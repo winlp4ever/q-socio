@@ -47,6 +47,7 @@ app.use(require('webpack-hot-middleware')(compiler));
 // setup backend data for servicese
 
 // websocket communication handlers
+var count = 0
 io.on('connection', function(socket){
     count ++;
     console.log(`${count}th user connected with id: ${socket.id}`);
