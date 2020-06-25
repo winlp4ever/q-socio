@@ -11,6 +11,10 @@ import Button from '@material-ui/core/Button'
 import {Flag, Loader} from 'react-feather'
 import { CSSTransition } from 'react-transition-group';
 
+const UNKNOWN = -1
+const VALID = 0
+const INVALID = 1
+
 const CondCheck = (props) => {
     const [checked, setChecked] = useState(false)
 
@@ -29,14 +33,20 @@ const CondCheck = (props) => {
 }
 
 const Question = (props) => {
+    const [valid, setValid] = useState(UNKNOWN)
     const [openMenu, setOpenMenu] = useState(false)
+
     const toggleMenu = () => setOpenMenu(!openMenu)
 
+    const toggleValid = () => {
+        if (valid == INVALID) setValid(UNKNOWN)
+        else setValid(valid+1)
+    }
 
-    return <div className='question'>
+    return <div className={'question' + (valid == INVALID ? ' invalid': '')}>
         <div className='info-and-settings'>
             <div className='likee-bar'>
-                <CheckValid className='animated-icon'/>
+                <CheckValid className='animated-icon' handleClick={toggleValid}/>
                 <Likee className='animated-icon likee'/>
             </div>
             <span className='date'>2020-06-17</span>
