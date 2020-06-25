@@ -66,6 +66,25 @@
                 height: 1.4em;
                 text-align: center;
             }
+            .question-menu-enter {
+                transform: translateY(100%), scale(0.5);
+                opacity: 0;
+                transition: 0.25s all cubic-bezier(0, 0, 0.2, 1);
+            }
+            .question-menu-enter-active {
+                transform: translateY(100%);
+                opacity: 1;
+            }
+            .question-menu-exit {
+                transform: translateY(100%);
+                opacity: 1;
+                transition: 0.25s all cubic-bezier(0, 0, 0.2, 1);
+            }
+            .question-menu-exit-active {
+                transform: translateY(100%), scale(0.5);
+                opacity: 0;
+            }
+            
             .question-menu {
                 position: absolute;
                 right: 0em;

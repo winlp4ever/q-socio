@@ -41,6 +41,7 @@
     "@svgr/webpack": "^5.4.0",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.7",
+    "@types/react-transition-group": "^4.4.0",
     "@uifabric/fabric-website": "^7.10.38",
     "@uifabric/fluent-theme": "^7.1.67",
     "aws-sdk": "^2.668.0",

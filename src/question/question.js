@@ -9,6 +9,7 @@ import EditMode from '../animation-icon/editMode'
 
 import Button from '@material-ui/core/Button'
 import {Flag, Loader} from 'react-feather'
+import { CSSTransition } from 'react-transition-group';
 
 const CondCheck = (props) => {
     const [checked, setChecked] = useState(false)
@@ -41,9 +42,16 @@ const Question = (props) => {
             <span className='date'>2020-06-17</span>
             <div className='settings'>
                 <MenuButton className='menu-button' handleClick={toggleMenu}/>
-                {openMenu && <div className='question-menu'>
-                    <EditMode />
-                </div>}
+                <CSSTransition
+                    in={openMenu}
+                    timeout={200}
+                    classNames="question-menu"
+                    unmountOnExit
+                >
+                    <div className='question-menu'>
+                        <EditMode />
+                    </div>
+                </CSSTransition>
             </div>
         </div>
         <div className='content'>
