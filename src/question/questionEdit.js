@@ -3,6 +3,7 @@ import { Button, TextareaAutosize } from '@material-ui/core'
 import AnimatedButton from '../animation-icon/animated-button'
 import * as SaveIcon from '../../imgs/save.json'
 import * as CancelIcon from '../../imgs/cancel.json'
+import OutsideClickHandler from 'react-outside-click-handler';
 
 const QuestionEdit = (props) => {
     const [newQ, setNewQ] = useState(props.q) 
@@ -20,16 +21,21 @@ const QuestionEdit = (props) => {
         if (props.handleCancel) props.handleCancel(newQ)
     }
 
-    return <div className='edit-text'>
-        <div className='edit-toolbar'>
-            <AnimatedButton text="Save" handleClick={handleSave} anim={SaveIcon}/>
-            <AnimatedButton text="Save" handleClick={handleCancel} anim={CancelIcon}/>
+    return  <OutsideClickHandler
+        onOutsideClick={handleCancel}    
+    >
+        <div className='edit-text'>
+            <div className='edit-toolbar'>
+                <AnimatedButton text="Save" handleClick={handleSave} anim={SaveIcon}/>
+                <AnimatedButton text="Cancel" handleClick={handleCancel} anim={CancelIcon}/>
+            </div>
+            <TextareaAutosize 
+                defaultValue={props.q}
+                onChange={handleChange}
+            />  
         </div>
-        <TextareaAutosize 
-            defaultValue={props.q}
-            onChange={handleChange}
-        />  
-    </div>
+    </OutsideClickHandler>
+    
 }
 
 export default QuestionEdit
