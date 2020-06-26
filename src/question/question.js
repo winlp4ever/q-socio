@@ -9,7 +9,7 @@ import EditMode from '../animation-icon/editMode'
 import QuestionEdit from './questionEdit'
 
 import Button from '@material-ui/core/Button'
-import {Flag, Loader} from 'react-feather'
+import {Flag, Loader, MessageSquare} from 'react-feather'
 import { CSSTransition } from 'react-transition-group'
 import MdRender from '../markdown-render/markdown-render'
 import TextareaAutosize from '@material-ui/core/TextareaAutosize'
@@ -18,6 +18,22 @@ import OutsideClickHandler from 'react-outside-click-handler';
 const UNKNOWN = -1
 const VALID = 0
 const INVALID = 1
+
+const ViewResponses = (props) => {
+    const [clicked, setClicked] = useState(false)
+
+    const handleClick = () => {
+        setClicked(!clicked)
+        if (props.handleClick) props.handleClick()
+    }
+    return <Button 
+        className={'view-responses' + (clicked ? ' clicked': '')}
+        onClick={handleClick}
+        startIcon={<MessageSquare />}    
+    >
+        View Responses
+    </Button>
+}
 
 const CondCheck = (props) => {
     const [checked, setChecked] = useState(false)
@@ -104,6 +120,7 @@ const Question = (props) => {
         <div className='iconbar'>
             <CondCheck text='Off Topic' icon={Flag}/>
             <CondCheck text='Is Fuzzy' icon={Loader}/>
+            <ViewResponses />
         </div>
     </div>
 }
