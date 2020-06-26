@@ -6,6 +6,7 @@ import CheckValid from '../animation-icon/checkValid'
 import Likee from '../animation-icon/likee'
 import MenuButton from '../animation-icon/menu'
 import EditMode from '../animation-icon/editMode'
+import QuestionEdit from './questionEdit'
 
 import Button from '@material-ui/core/Button'
 import {Flag, Loader} from 'react-feather'
@@ -38,7 +39,6 @@ const CondCheck = (props) => {
 const Question = (props) => {
     const [valid, setValid] = useState(UNKNOWN)
     const [openMenu, setOpenMenu] = useState(false)
-    const [newQ, setNewQ] = useState(props.q)
     const [editMode, setEditMode] = useState(false)
 
     const menuButton = useRef(null)
@@ -94,8 +94,7 @@ const Question = (props) => {
             <div className='q'>
                 <div className='text'>
                     {
-                        editMode ? <TextareaAutosize
-                            defaultValue={'Hello world\n__whatelse__'}
+                        editMode ? <QuestionEdit q={'Hello world\n__whatelse__'}
                         />
                         : <MdRender source={'Hello world\n__whatelse__'} />
                     }
