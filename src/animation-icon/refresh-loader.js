@@ -59,7 +59,7 @@ const RefreshLoader = (props) => {
                 
                 let sp = sigmoid(Math.max(0, e.pageY-h)) * MAX_HEIGHT
                 $(findDOMNode(lder.current)).css('height', sp)
-                if (sp > MAX_HEIGHT - 1e-6) {
+                if (sp > MAX_HEIGHT - 1) {
                     setRefresh(true)
                     isRefreshing = true
                     clearTimeout(timeout)
