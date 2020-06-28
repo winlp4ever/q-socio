@@ -1,0 +1,24 @@
+.question-list {
+    height: 100%;
+    position: relative;
+    width: 100%;
+    //overflow-y: scroll;
+    .refresh-loader {
+        background: transparent;
+        transition: all 0.5s cubic-bezier(0, 0, 0.2, 1);
+        height: 0;
+        &.is-refreshing {
+            height: 80px;
+            .refresh-icon {
+                margin: auto;
+                text-align: center;
+                svg {
+                    height: 75px !important;
+                    width: 75px !important;
+                    vertical-align: middle;
+                } 
+            }
+            
+        }
+    }
+}
