@@ -32,8 +32,12 @@ class LoadingIcon extends React.Component {
 const MAX_HEIGHT = 100
 
 function sigmoid(x) {
-    let ex = Math.exp(-x)
+    let ex = Math.exp(-4*x)
     return (1 - ex) / (1 + ex)
+}
+
+function dem(x) {
+    return MAX_HEIGHT * x / (x + Math.sqrt(MAX_HEIGHT))
 }
 
 const RefreshLoader = (props) => {
@@ -58,9 +62,9 @@ const RefreshLoader = (props) => {
                 if (!isClicking) return
                 if (isRefreshing) return
                 
-                let sp = sigmoid(Math.max(0, e.pageY-h)) * MAX_HEIGHT
+                let sp = dem(Math.max(0, e.pageY-h))
                 $(findDOMNode(lder.current)).css('height', sp)
-                if (sp > MAX_HEIGHT - 1) {
+                if (sp > dem(250)) {
                     setRefresh(true)
                     isRefreshing = true
                     clearTimeout(timeout)

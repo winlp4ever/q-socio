@@ -194,8 +194,9 @@
             display: flex;
             flex-direction: row;
             .animated-icon {
-                width: 1em;
+                //width: 1em;
                 margin: auto 0.5em;
+                width: 1em;
                 svg {
                     vertical-align: middle;
                 }
