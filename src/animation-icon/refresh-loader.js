@@ -1,9 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react'
 import {findDOMNode} from 'react-dom'
 import $ from 'jquery'
-import * as animationData from '../../imgs/loading.json'
+import * as animationData from '../../imgs/rocket-launch.json'
 import lottie from 'lottie-web'
 
+import './_refresh-loader.scss'
 
 class LoadingIcon extends React.Component {
     componentDidMount() {
@@ -68,7 +69,7 @@ const RefreshLoader = (props) => {
                         setRefresh(false)
                         isRefreshing = false
                         $(findDOMNode(lder.current)).css('height', 0)
-                    }, 1000)
+                    }, 1500)
                 }
                 else {
                     clearTimeout(timeout)
@@ -80,7 +81,7 @@ const RefreshLoader = (props) => {
             }
         })
         return () => {
-            $(window).off('*')
+            $(window).off()
             clearTimeout(timeout)
         }
     }, [])

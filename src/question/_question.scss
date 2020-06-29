@@ -33,24 +33,7 @@
             text-align: center;
             width: 100%;
         }
-        .likee-bar {
-            position: absolute;
-            left: 0em;
-            top: 0;
-            height: 100%;
-            display: flex;
-            flex-direction: row;
-            .animated-icon {
-                width: 1em;
-                margin: auto 0.5em;
-                svg {
-                    vertical-align: middle;
-                }
-                &.likee {
-                    width: 1.2em;
-                }
-            }
-        }
+        
         .settings {
             z-index: 100;
             position: absolute;
@@ -204,16 +187,34 @@
         //text-align: center;
         display: flex;
         flex-direction: row;
-        justify-content: center;
-        
+        justify-content: space-between;
+        .likee-bar {
+            position: relative;
+            //height: 100%;
+            display: flex;
+            flex-direction: row;
+            .animated-icon {
+                width: 1em;
+                margin: auto 0.5em;
+                svg {
+                    vertical-align: middle;
+                }
+                &.likee {
+                    width: 1.2em;
+                }
+            }
+        }
         .cond-check, .view-responses {
+            min-width: 0;
+            padding: 0.5em;
             text-transform: none;
             letter-spacing: unset;
-            margin: auto 0.5em;
+            margin: auto 0.2em;
             transition: 0.2s all cubic-bezier(0,0,0.2,1);
+            border-radius: 50%;
             font: {
                 family: 'Maven Pro', sans-serif;
-                size: 0.7em;
+                size: 1em;
             }
             span.MuiButton-startIcon {
                 margin-right: 0.2em;

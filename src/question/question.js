@@ -29,9 +29,8 @@ const ViewResponses = (props) => {
     return <Button 
         className={'view-responses' + (clicked ? ' clicked': '')}
         onClick={handleClick}
-        startIcon={<MessageSquare />}    
     >
-        View Responses
+        <MessageSquare />
     </Button>
 }
 
@@ -46,9 +45,8 @@ const CondCheck = (props) => {
     return <Button 
         className={'cond-check' + (checked ? ' checked': '')}
         onClick={handleClick}
-        startIcon={(props.icon ? <props.icon />: null)}    
     >
-        {props.text}
+        <props.icon />
     </Button>
 }
 
@@ -78,10 +76,7 @@ const Question = (props) => {
 
     return <div className={'question' + (valid == INVALID ? ' invalid': '')}>
         <div className='info-and-settings'>
-            <div className='likee-bar'>
-                <CheckValid className='animated-icon' handleClick={toggleValid}/>
-                <Likee className='animated-icon likee'/>
-            </div>
+            
             <span className='date'>2020-06-17</span>
             <OutsideClickHandler
                 onOutsideClick={deactMenu}
@@ -118,9 +113,16 @@ const Question = (props) => {
             </div>
         </div>
         <div className='iconbar'>
-            <CondCheck text='Off Topic' icon={Flag}/>
-            <CondCheck text='Is Fuzzy' icon={Loader}/>
-            <ViewResponses />
+            <div className='likee-bar'>
+                <CheckValid className='animated-icon' handleClick={toggleValid}/>
+                <Likee className='animated-icon likee'/>
+            </div>
+            <div className='tag-icons'>
+                <CondCheck text='Off Topic' icon={Flag}/>
+                <CondCheck text='Is Fuzzy' icon={Loader}/>
+                <ViewResponses />
+            </div>
+
         </div>
     </div>
 }
