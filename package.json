@@ -12,7 +12,9 @@
   "babel": {
     "env": {
       "start": {
-        "plugins": ["@babel/plugin-transform-modules-commonjs"]
+        "plugins": [
+          "@babel/plugin-transform-modules-commonjs"
+        ]
       }
     }
   },
@@ -77,6 +79,7 @@
     "react-dropzone": "^10.2.2",
     "react-feather": "^2.0.8",
     "react-hot-loader": "^4.12.21",
+    "react-infinite-scroll-component": "^5.0.5",
     "react-katex": "^2.0.2",
     "react-lazyload": "^2.6.7",
     "react-lottie": "^1.2.3",
