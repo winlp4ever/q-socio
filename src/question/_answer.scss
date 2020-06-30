@@ -1,0 +1,41 @@
+.answer-container {
+    width: 45%;
+    margin: auto;
+    transform: translateX(0.5em);
+    background: white;
+    border: 1px solid lightgrey;
+    border-right: 5px solid #388e3c;
+    box-sizing: border-box;
+    padding: 0.2em 0.5em;
+    border-radius: 5px;
+    
+    .answer {
+        .text {
+            font-size: 0.8em;
+        }
+    }
+    .iconbar {
+        margin-top: 0.2em;
+        //text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .likee-bar {
+            position: relative;
+            //height: 100%;
+            display: flex;
+            flex-direction: row;
+            .animated-icon {
+                //width: 1em;
+                margin: auto 0.25em;
+                width: 0.8em;
+                svg {
+                    vertical-align: middle;
+                }
+                &.likee {
+                    width: 0.95em;
+                }
+            }
+        }
+    }
+}

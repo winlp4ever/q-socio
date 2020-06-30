@@ -7,7 +7,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 const QuestionList = (props) => {
     const [loading, setLoading] = useState(false)
-    const [qs, setQs] = useState([...Array(12).keys()])
+    const [qs, setQs] = useState([...Array(6).keys()])
     const fetchData = async () => {
         console.log('fetching data...')
         setQs([...qs, 1])
