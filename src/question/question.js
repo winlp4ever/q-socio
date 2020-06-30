@@ -13,7 +13,6 @@ import Button from '@material-ui/core/Button'
 import {Flag, Loader, MessageSquare} from 'react-feather'
 import { CSSTransition } from 'react-transition-group'
 import MdRender from '../markdown-render/markdown-render'
-//import TextareaAutosize from '@material-ui/core/TextareaAutosize'
 import OutsideClickHandler from 'react-outside-click-handler';
 
 const UNKNOWN = -1
@@ -118,6 +117,7 @@ const Question = (props) => {
                     </div>
                 </div>
             </div>
+
             <div className='iconbar'>
                 <div className='likee-bar'>
                     <CheckValid className='animated-icon' handleClick={toggleValid}/>
@@ -131,9 +131,16 @@ const Question = (props) => {
             </div>
             
         </div>
-        {viewResponses && <div className='answers-container'>
-            <Answer />
-        </div>}
+        <CSSTransition
+            in={viewResponses}
+            timeout={250}
+            classNames="answers-container"
+            unmountOnExit
+        >
+            <div className='answers-container'>
+                <Answer />
+            </div>
+        </ CSSTransition>
     </div>
 }
 

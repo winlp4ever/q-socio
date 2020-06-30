@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import CheckValid from '../animation-icon/checkValid'
 import Likee from '../animation-icon/likee'
 
+import {CSSTransition} from 'react-transition-group'
+
 import './_answer.scss'
 
 const Answer = (props) => {
