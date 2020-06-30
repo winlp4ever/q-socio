@@ -8,6 +8,9 @@ import './_answer.scss'
 
 const Answer = (props) => {
     return <div className='answer-container'>
+        <div className='info-and-settings'>    
+            <span className='date'>2020-06-17</span>
+        </div>
         <div className='answer'>
             <div className='text'>
             Yay, this is the response
