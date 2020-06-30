@@ -195,22 +195,22 @@
             flex-direction: row;
             .animated-icon {
                 //width: 1em;
-                margin: auto 0.5em;
-                width: 1em;
+                margin: auto 0.25em;
+                width: 0.8em;
                 svg {
                     vertical-align: middle;
                 }
                 &.likee {
-                    width: 1.2em;
+                    width: 0.95em;
                 }
             }
         }
         .cond-check, .view-responses {
             min-width: 0;
-            padding: 0.5em;
+            padding: 0.25em;
             text-transform: none;
             letter-spacing: unset;
-            margin: auto 0.2em;
+            margin: auto 0.1em;
             transition: 0.2s all cubic-bezier(0,0,0.2,1);
             border-radius: 50%;
             font: {
@@ -223,8 +223,8 @@
             svg {
                 stroke-width: 1px;
                 color: #424242;
-                width: 1em;
-                height: 1em;
+                width: 0.8em;
+                height: 0.8em;
             }
             &.checked {
                 background: #e43f5a;

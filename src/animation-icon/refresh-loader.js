@@ -30,6 +30,7 @@ class LoadingIcon extends React.Component {
 }
 
 const MAX_HEIGHT = 100
+const SQRT = 10
 
 function sigmoid(x) {
     let ex = Math.exp(-4*x)
@@ -37,7 +38,7 @@ function sigmoid(x) {
 }
 
 function dem(x) {
-    return MAX_HEIGHT * x / (x + Math.sqrt(MAX_HEIGHT))
+    return MAX_HEIGHT * x / (x + SQRT)
 }
 
 const RefreshLoader = (props) => {
