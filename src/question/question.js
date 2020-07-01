@@ -10,6 +10,8 @@ import QuestionEdit from './question-edit'
 import Answer from './answer'
 import NewAnswer from './new-answer'
 import {postForData} from '../utils'
+import AnimatedButton from '../animation-icon/animated-button'
+import RefreshWaitIcon from '../../imgs/refresh-wait.json'
 
 import Button from '@material-ui/core/Button'
 import {Flag, Loader, MessageSquare} from 'react-feather'
@@ -20,6 +22,11 @@ import OutsideClickHandler from 'react-outside-click-handler';
 const UNKNOWN = -1
 const VALID = 0
 const INVALID = 1
+
+const status = {
+    opened: '#fdd835',
+    answered: '#00c853'
+}
 
 const ViewResponses = (props) => {
     const [clicked, setClicked] = useState(false)
@@ -61,6 +68,7 @@ const AnswersContainer = (props) => {
         })
         if (data.status == 0) {
             setAs(data.answers)
+            if (props.refresh) props.refresh()
         }
     }
 
@@ -69,6 +77,7 @@ const AnswersContainer = (props) => {
     }, [])
 
     return <div className='answers-container'>
+        <AnimatedButton anim={RefreshWaitIcon} text={'refresh'} className='refresh-answers' handleClick={props.refresh}/>
         <NewAnswer qid={props.qid} refresh={fetchData} />
         {as.map(a => <Answer aid={a.id} key={a.id}/>)}
     </div>
@@ -88,6 +97,7 @@ const Question = (props) => {
         let data = await postForData('/post-question', {
             qid: props.qid
         })
+        console.log('fetching data...')
         if (data.status == 0) {
             setQ(data.question)
         }
@@ -121,7 +131,11 @@ const Question = (props) => {
     return <div className='question-container'>
         <div className={'question' + (valid == INVALID ? ' invalid': '') + (viewResponses ? ' view-responses': '')}>
             <div className='info-and-settings'>
-                
+                <span className='status' style={{
+                    background: status[q.status]
+                }}>
+                    {q.status}
+                </span>
                 <span className='date'>{q.date.substr(0, 10)}</span>
                 <OutsideClickHandler
                     onOutsideClick={deactMenu}
@@ -176,7 +190,7 @@ const Question = (props) => {
             classNames="answers-container"
             unmountOnExit
         >
-            <AnswersContainer qid={props.qid} />
+            <AnswersContainer qid={props.qid} refresh={fetchData}/>
         </ CSSTransition>
     </div>
 }

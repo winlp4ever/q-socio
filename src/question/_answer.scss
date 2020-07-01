@@ -20,6 +20,32 @@
     transform: translateX(0.5em);
     width: 45%;
     margin: auto;
+    .refresh-answers {
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
+        font-size: 0.8em;
+        text-transform: none;
+        letter-spacing: unset;
+        //border: 1px solid lightgrey;
+        border-radius: 0.2em;
+        background: white;
+        padding: 0.2em 0.5em;
+        line-height: 1.2;
+        min-width: 0;
+        display: block;
+        margin: auto;
+        > span {
+            display: inline-block;
+            margin-right: 0;
+            padding: 0.2em;
+
+        }
+        svg {
+            vertical-align: middle;
+            width: 0.8em !important;
+            //height: 0.8em !important;
+        }
+    }
     .answer-container {
         width: 100%;
         background: white;

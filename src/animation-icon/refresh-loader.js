@@ -60,6 +60,7 @@ const RefreshLoader = (props) => {
                 isClicking = false
             },
             mousemove: (e) => {
+                e.preventDefault()
                 if (!isClicking) return
                 if (isRefreshing) return
                 
