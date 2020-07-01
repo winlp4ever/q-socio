@@ -51,6 +51,27 @@ const CondCheck = (props) => {
     </Button>
 }
 
+const AnswersContainer = (props) => {
+    const [as, setAs] = useState([])
+
+    const fetchData = async () => {
+        let data = await postForData('/post-answers', {
+            qid: props.qid
+        })
+        if (data.status == 0) {
+            setAs(data.answers)
+        }
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
+    return <div className='answers-container'>
+        {as.map(a => <Answer aid={a.id} key={a.id}/>)}
+    </div>
+}
+
 const Question = (props) => {
     const [q, setQ] = useState()
 
@@ -153,9 +174,7 @@ const Question = (props) => {
             classNames="answers-container"
             unmountOnExit
         >
-            <div className='answers-container'>
-                <Answer />
-            </div>
+            <AnswersContainer qid={props.qid} />
         </ CSSTransition>
     </div>
 }

@@ -121,7 +121,60 @@ app.post('/post-question', (req, res) => {
         if (err) {
             res.json({status: 1, err: err.stack});
         } else {
-            res.json({status: 0, question: response.rows[0]});
+            if (response.rows.length <= 0) 
+                res.json({status: 1, err: 'no question matching that id'});
+            else
+                res.json({status: 0, question: response.rows[0]});
+        }
+    })
+})
+
+app.post('/post-answers', (req, res) => {
+    const query = `
+        select id from qsoc_answers 
+        where qid=$1
+        order by date desc
+    `
+    const values = [req.body.qid]
+    client.query(query, values, (err, response) => {
+        if (err) {
+            res.json({status: 1, err: err.stack});
+        } else {
+            res.json({status: 0, answers: response.rows});
+        }
+    })
+})
+
+app.post('/post-answer', (req, res) => {
+    const query = `
+        select * from qsoc_answers 
+        where id=$1
+        order by date desc
+    `
+    const values = [req.body.aid]
+    client.query(query, values, (err, response) => {
+        if (err) {
+            res.json({status: 1, err: err.stack});
+        } else {
+            if (response.rows.length <= 0) 
+                res.json({status: 1, err: 'no answer matching that id'});
+            else
+                res.json({status: 0, answer: response.rows[0]});
+        }
+    })
+})
+
+app.post('/send-answer', (req, res) => {
+    // To re-write
+    const query = `
+        update
+    `
+    const values = [req.body.qid]
+    client.query(query, values, (err, response) => {
+        if (err) {
+            res.json({status: 1, err: err.stack});
+        } else {
+            res.json({status: 0, answers: response.rows});
         }
     })
 })
