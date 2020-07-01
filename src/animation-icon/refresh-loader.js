@@ -69,7 +69,7 @@ const RefreshLoader = (props) => {
                     setRefresh(true)
                     isRefreshing = true
                     clearTimeout(timeout)
-                    if (props.refresh) this.props.refresh()
+                    if (props.refresh) props.refresh()
                     timeout = setTimeout(() => {
                         setRefresh(false)
                         isRefreshing = false

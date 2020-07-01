@@ -46,6 +46,15 @@ app.use(require('webpack-hot-middleware')(compiler));
 
 // setup backend data for servicese
 
+/** 
+* setup postgres for backend data services
+*/
+const dbConfig = require('./configs/db-config.js');
+const {Pool, Client} = require('pg');
+const pool = new Pool(dbConfig);
+const client = new Client(dbConfig);
+client.connect();
+
 // websocket communication handlers
 var count = 0
 io.on('connection', function(socket){
@@ -71,6 +80,51 @@ app.get('*', (req, res, next) => {
         res.end();
     });
 });
+
+app.post('/post-questions', (req, res) => {
+    
+    let query = `
+        select id from qsoc_questions 
+        where valid != 1
+        and id <= $1
+        order by id desc
+        limit $2
+    `
+    let values = [req.body.startID, req.body.limit]
+    if (req.body.startID == 0) {
+        console.log(req.body)
+        query = `
+            select id from qsoc_questions 
+            where valid != 1
+            order by id desc
+            limit $1
+        `
+        values = [req.body.limit]
+    }
+    client.query(query, values, (err, response) => {
+        if (err) {
+            res.json({status: 1, err: err.stack});
+        } else {
+            res.json({status: 0, questions: response.rows});
+        }
+    })
+})
+
+app.post('/post-question', (req, res) => {
+    const query = `
+        select * from qsoc_questions 
+        where id=$1
+        order by date desc
+    `
+    const values = [req.body.qid]
+    client.query(query, values, (err, response) => {
+        if (err) {
+            res.json({status: 1, err: err.stack});
+        } else {
+            res.json({status: 0, question: response.rows[0]});
+        }
+    })
+})
 
 
 // on terminating the process

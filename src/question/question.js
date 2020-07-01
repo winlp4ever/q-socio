@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useRef, useEffect} from 'react'
 
 import './_question.scss'
 
@@ -8,6 +8,7 @@ import MenuButton from '../animation-icon/menu'
 import EditMode from '../animation-icon/editMode'
 import QuestionEdit from './question-edit'
 import Answer from './answer'
+import {postForData} from '../utils'
 
 import Button from '@material-ui/core/Button'
 import {Flag, Loader, MessageSquare} from 'react-feather'
@@ -51,12 +52,27 @@ const CondCheck = (props) => {
 }
 
 const Question = (props) => {
+    const [q, setQ] = useState()
+
     const [valid, setValid] = useState(UNKNOWN)
     const [openMenu, setOpenMenu] = useState(false)
     const [editMode, setEditMode] = useState(false)
     const [viewResponses, setViewResponses] = useState(false)
 
     const menuButton = useRef(null)
+
+    const fetchData = async () => {
+        let data = await postForData('/post-question', {
+            qid: props.qid
+        })
+        if (data.status == 0) {
+            setQ(data.question)
+        }
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
 
     const toggleMenu = () => setOpenMenu(!openMenu)
 
@@ -78,12 +94,12 @@ const Question = (props) => {
     const toggleViewResponses = () => {
         setViewResponses(!viewResponses)
     }
-
+    if (q == null) return null
     return <div className='question-container'>
         <div className={'question' + (valid == INVALID ? ' invalid': '') + (viewResponses ? ' view-responses': '')}>
             <div className='info-and-settings'>
                 
-                <span className='date'>2020-06-17</span>
+                <span className='date'>{q.date.substr(0, 10)}</span>
                 <OutsideClickHandler
                     onOutsideClick={deactMenu}
                 >
@@ -110,9 +126,9 @@ const Question = (props) => {
                 <div className='q'>
                     <div className='text'>
                         {
-                            editMode ? <QuestionEdit q={'Hello world\n__whatelse__'}
+                            editMode ? <QuestionEdit q={q.text}
                             />
-                            : <MdRender source={'Hello world\n__whatelse__'} />
+                            : <MdRender source={q.text} />
                         }
                     </div>
                 </div>
