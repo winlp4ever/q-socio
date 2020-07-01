@@ -52,7 +52,7 @@ const RefreshLoader = (props) => {
         var timeout = null
         $(window).on({
             mousedown: (e) => {
-                e.preventDefault()
+                //e.preventDefault()
                 isClicking = true
                 h = e.pageY
             },

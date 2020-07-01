@@ -5,11 +5,11 @@
 }   
 .answers-container-enter-active {
     opacity: 1;
-    transform: none;
+    transform: translateX(0.5em);
 }
 .answers-container-exit {
     opacity: 1;
-    transform: none;
+    transform: translateX(0.5em);
     transition: all 0.25s cubic-bezier(0, 0, 0.2, 1);
 }   
 .answers-container-exit-active {
@@ -17,16 +17,18 @@
     transform: translateX(-1em);
 }
 .answers-container {
+    transform: translateX(0.5em);
+    width: 45%;
+    margin: auto;
     .answer-container {
-        transform: translateX(0.5em);
-        width: 45%;
-        margin: auto;
+        width: 100%;
         background: white;
         border: 1px solid lightgrey;
         border-right: 5px solid #388e3c;
         box-sizing: border-box;
         padding: 0.2em 0.5em;
         border-radius: 5px;
+        margin-top: 0.5em;
         .info-and-settings {
             position: relative;
             width: 100%;

@@ -8,6 +8,7 @@ import MenuButton from '../animation-icon/menu'
 import EditMode from '../animation-icon/editMode'
 import QuestionEdit from './question-edit'
 import Answer from './answer'
+import NewAnswer from './new-answer'
 import {postForData} from '../utils'
 
 import Button from '@material-ui/core/Button'
@@ -68,6 +69,7 @@ const AnswersContainer = (props) => {
     }, [])
 
     return <div className='answers-container'>
+        <NewAnswer qid={props.qid} refresh={fetchData} />
         {as.map(a => <Answer aid={a.id} key={a.id}/>)}
     </div>
 }

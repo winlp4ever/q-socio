@@ -1,0 +1,20 @@
+.new-answer {
+    width: 100%;
+    margin: 0.5em auto;
+    resize: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8em;
+    padding: 0.25em;
+    box-sizing: border-box;
+    background: white;  
+    border-bottom: 1px solid lightgrey;
+    textarea {
+        width: 100%;
+        outline: none;
+        border-radius: 0.2em;
+        box-sizing: border-box;
+        padding: 0.2em 0.5em;
+        border: none;
+        resize: none;
+    }
+}

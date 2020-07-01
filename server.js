@@ -167,9 +167,9 @@ app.post('/post-answer', (req, res) => {
 app.post('/send-answer', (req, res) => {
     // To re-write
     const query = `
-        update
+        select qsoc_add_answer($3, $1, $2);
     `
-    const values = [req.body.qid]
+    const values = [req.body.qid, req.body.newAnswer, req.body.userid]
     client.query(query, values, (err, response) => {
         if (err) {
             res.json({status: 1, err: err.stack});
