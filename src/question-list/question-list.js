@@ -17,12 +17,10 @@ const QuestionList = (props) => {
     }, [])
 
     const resync = async () => {
-        console.log('resyncing...')
         let data = await postForData('/post-questions', {
             startID: 0,
             limit: qs.length + 10
         })
-        console.log(data)
         if (data.status == 0) {
             setQs(data.questions)
             if (data.questions.length > 0)
@@ -32,7 +30,6 @@ const QuestionList = (props) => {
     }
 
     const fetchData = async () => {
-        console.log('fetching data...')
         let data = await postForData('/post-questions', {
             startID: startID,
             limit: 10 + qs.length
@@ -47,7 +44,6 @@ const QuestionList = (props) => {
     }
     
     const loadMore = async () => {
-        console.log('hmm')
         if (loading) return 
         setLoading(true)
         await fetchData()

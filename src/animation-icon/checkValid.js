@@ -7,9 +7,6 @@ const UNKNOWN = 0
 const VALID = 1
 
 export default class CheckValid extends React.Component {
-    state = {
-        lv: UNKNOWN
-    }
     componentDidMount() {
         this.anim = lottie.loadAnimation({
             container: this.animBox, // the dom element that will contain the animation
@@ -19,6 +16,8 @@ export default class CheckValid extends React.Component {
             animationData: animationData, // the path to the animation json
         });
         this.anim.setSpeed(2);
+        
+        if (this.props.valid == 1) this.anim.play()
     }
 
     componentWillUnmount() {
@@ -26,9 +25,8 @@ export default class CheckValid extends React.Component {
     }
 
     handleClick = () => {
-        this.anim.setDirection(this.state.lv? -1: 1)
+        this.anim.setDirection(this.props.valid? -1: 1)
         this.anim.play()
-        this.setState({lv: 1-this.state.lv})
         if (this.props.handleClick) this.props.handleClick()
     }
     

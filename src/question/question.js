@@ -83,6 +83,7 @@ const AnswersContainer = (props) => {
 }
 
 const Question = (props) => {
+    const [loaded, setLoaded] = useState(false)
     const [q, setQ] = useState()
 
     const [valid, setValid] = useState(UNKNOWN)
@@ -98,10 +99,11 @@ const Question = (props) => {
     const fetchData = async () => {
         let data = await postForData('/post-question', {
             qid: props.qid
-        })
-        console.log('fetching data...')
+        })        
         if (data.status == 0) {
             setQ(data.question)
+            setValid(data.question.valid)
+            setLoaded(true)
         }
     }
 
@@ -111,9 +113,15 @@ const Question = (props) => {
 
     const toggleMenu = () => setOpenMenu(!openMenu)
 
-    const toggleValid = () => {
-        setValid(1-valid)
-        if (valid) setViewResponses(false)
+    const toggleValid = async () => {
+        let data = await postForData('/valid-invalid-question', {
+            qid: props.qid,
+            value: 1-valid
+        })
+        if (data.status == 0) {
+            setValid(1-valid)
+            if (valid) setViewResponses(false)
+        }
     }
 
     const toggleEditMode = () => {
@@ -134,7 +142,7 @@ const Question = (props) => {
         } else
             setViewResponses(!viewResponses)
     }
-    if (q == null) return null
+    if (!loaded) return null
     return <div className='question-container'>
         <CSSTransition
             in={viewNotif}
@@ -191,7 +199,7 @@ const Question = (props) => {
 
             <div className='iconbar'>
                 <div className='likee-bar'>
-                    <CheckValid className='animated-icon' handleClick={toggleValid}/>
+                    <CheckValid className='animated-icon' handleClick={toggleValid} valid={valid}/>
                     <Likee className='animated-icon likee'/>
                 </div>
                 <div className='tag-icons'>

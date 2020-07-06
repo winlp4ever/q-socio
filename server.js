@@ -85,8 +85,7 @@ app.post('/post-questions', (req, res) => {
     
     let query = `
         select id from qsoc_questions 
-        where valid != 1
-        and id <= $1
+        where id <= $1
         order by id desc
         limit $2
     `
@@ -95,7 +94,6 @@ app.post('/post-questions', (req, res) => {
         console.log(req.body)
         query = `
             select id from qsoc_questions 
-            where valid != 1
             order by id desc
             limit $1
         `
@@ -104,6 +102,7 @@ app.post('/post-questions', (req, res) => {
     client.query(query, values, (err, response) => {
         if (err) {
             res.json({status: 1, err: err.stack});
+            console.log(err.stack)
         } else {
             res.json({status: 0, questions: response.rows});
         }
@@ -120,6 +119,7 @@ app.post('/post-question', (req, res) => {
     client.query(query, values, (err, response) => {
         if (err) {
             res.json({status: 1, err: err.stack});
+            console.log(err.stack)
         } else {
             if (response.rows.length <= 0) 
                 res.json({status: 1, err: 'no question matching that id'});
@@ -139,6 +139,7 @@ app.post('/post-answers', (req, res) => {
     client.query(query, values, (err, response) => {
         if (err) {
             res.json({status: 1, err: err.stack});
+            console.log(err.stack)
         } else {
             res.json({status: 0, answers: response.rows});
         }
@@ -155,6 +156,7 @@ app.post('/post-answer', (req, res) => {
     client.query(query, values, (err, response) => {
         if (err) {
             res.json({status: 1, err: err.stack});
+            console.log(err.stack)
         } else {
             if (response.rows.length <= 0) 
                 res.json({status: 1, err: 'no answer matching that id'});
@@ -173,8 +175,26 @@ app.post('/send-answer', (req, res) => {
     client.query(query, values, (err, response) => {
         if (err) {
             res.json({status: 1, err: err.stack});
+            console.log(err.stack)
         } else {
             res.json({status: 0, answers: response.rows});
+        }
+    })
+})
+
+app.post('/valid-invalid-question', (req, res) => {
+    const query = `
+        update qsoc_questions
+        set valid = $1
+        where id = $2
+    `
+    const values = [req.body.value, req.body.qid]
+    client.query(query, values, (err, response) => {
+        if (err) {
+            res.json({status: 1, err: err.stack});
+            console.log(err.stack)
+        } else {
+            res.json({status: 0});
         }
     })
 })

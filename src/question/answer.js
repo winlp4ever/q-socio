@@ -14,7 +14,6 @@ const Answer = (props) => {
         let data = await postForData('/post-answer', {
             aid: props.aid
         })
-        console.log(data)
         if (data.status == 0) {
             setA(data.answer)
         }
