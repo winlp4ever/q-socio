@@ -81,6 +81,21 @@ app.get('*', (req, res, next) => {
     });
 });
 
+app.post('/new-question', (req, res) => {
+    const query = `
+        select qsoc_add_question($1, $2);
+    `
+    const values = [req.body.userid, req.body.question]
+    client.query(query, values, (err, response) => {
+        if (err) {
+            res.json({status: 1, err: err.stack});
+            console.log(err.stack)
+        } else {
+            res.json({status: 0});
+        }
+    })
+})
+
 app.post('/post-questions', (req, res) => {
     
     let query = `
@@ -99,6 +114,23 @@ app.post('/post-questions', (req, res) => {
         `
         values = [req.body.limit]
     }
+    client.query(query, values, (err, response) => {
+        if (err) {
+            res.json({status: 1, err: err.stack});
+            console.log(err.stack)
+        } else {
+            res.json({status: 0, questions: response.rows});
+        }
+    })
+})
+
+app.post('/post-user-questions', (req, res) => {
+    let query = `
+        select * from qsoc_questions 
+        where userid = $1
+        order by id desc
+    `
+    let values = [req.body.userid]
     client.query(query, values, (err, response) => {
         if (err) {
             res.json({status: 1, err: err.stack});
