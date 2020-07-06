@@ -19,9 +19,8 @@ import { CSSTransition } from 'react-transition-group'
 import MdRender from '../markdown-render/markdown-render'
 import OutsideClickHandler from 'react-outside-click-handler';
 
-const UNKNOWN = -1
-const VALID = 0
-const INVALID = 1
+const UNKNOWN = 0
+const VALID = 1
 
 const status = {
     opened: '#fdd835',
@@ -91,6 +90,9 @@ const Question = (props) => {
     const [editMode, setEditMode] = useState(false)
     const [viewResponses, setViewResponses] = useState(false)
 
+    const [notif, setNotif] = useState('')
+    const [viewNotif, setViewNotif] = useState(false)
+
     const menuButton = useRef(null)
 
     const fetchData = async () => {
@@ -110,8 +112,8 @@ const Question = (props) => {
     const toggleMenu = () => setOpenMenu(!openMenu)
 
     const toggleValid = () => {
-        if (valid == INVALID) setValid(UNKNOWN)
-        else setValid(valid+1)
+        setValid(1-valid)
+        if (valid) setViewResponses(false)
     }
 
     const toggleEditMode = () => {
@@ -125,11 +127,27 @@ const Question = (props) => {
     }
 
     const toggleViewResponses = () => {
-        setViewResponses(!viewResponses)
+        if (!valid) {
+            setNotif('cannot show answers of invalid question')
+            setViewNotif(true)
+            setTimeout(() => setViewNotif(false), 1000)
+        } else
+            setViewResponses(!viewResponses)
     }
     if (q == null) return null
     return <div className='question-container'>
-        <div className={'question' + (valid == INVALID ? ' invalid': '') + (viewResponses ? ' view-responses': '')}>
+        <CSSTransition
+            in={viewNotif}
+            timeout={200}
+            classNames="question-notif"
+            unmountOnExit
+        >
+            <div className='question-notif'>
+                {notif}
+            </div>
+        </CSSTransition>
+        
+        <div className={'question' + (viewResponses ? ' view-responses': '')}>
             <div className='info-and-settings'>
                 <span className='status' style={{
                     background: status[q.status]
