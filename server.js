@@ -81,6 +81,12 @@ app.get('*', (req, res, next) => {
     });
 });
 
+app.post('/authenticate', (req, res) => {
+    if (req.body.pw == '@tAII2020') {
+        res.json({status: 0})
+    } else res.json({status: 1, err: 'wrong password'})
+})
+
 app.post('/new-question', (req, res) => {
     const query = `
         select qsoc_add_question($1, $2);
