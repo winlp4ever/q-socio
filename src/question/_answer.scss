@@ -30,18 +30,19 @@
         text-transform: none;
         letter-spacing: unset;
         //border: 1px solid lightgrey;
-        border-radius: 0.2em;
-        background: white;
-        padding: 0.2em 0.5em;
+        border-radius: 1.5em;
+        background: #f9b384;
+        padding: 0.2em 1em;
         line-height: 1.2;
         min-width: 0;
         display: block;
         margin: auto;
+        box-shadow: 0 6.4px 14.4px 0 rgba(0,0,0,.132), 0 1.2px 3.6px 0 rgba(0,0,0,.108);
         > span {
             display: inline-block;
             margin-right: 0;
             padding: 0.2em;
-
+            vertical-align: middle;
         }
         svg {
             vertical-align: middle;
