@@ -30,21 +30,31 @@
         position: relative;
         width: 45%;
         margin: 0.5em auto;
-        border-radius: 2px;
+        border-radius: 8px;
         background: #ffffff; 
         background-size: cover;   
         box-sizing: border-box;
-        padding: 0.2em 0.5em;
+        padding: 0.5em;
         border: 1px solid rgb(224, 224, 224);
         font-family: 'Roboto', sans-serif;
         color: #424242;
-        border-left: 2px solid #ff6768;
+        //border-left: 2px solid #ff6768;
         transition: all 0.25s cubic-bezier(0, 0, 0.2, 1);
         &.invalid {
             opacity: 0.5;
         }
         &.view-responses {
             transform: translateX(-0.75em);
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0.5em;
+            left: 0em;
+            height: 1.75em;
+            width: 0.25em;
+            border-radius: 0.5em;
+            background: #ff1744;
         }
         .info-and-settings {
             position: relative;
@@ -240,12 +250,12 @@
                 .animated-icon {
                     //width: 1em;
                     margin: auto 0.25em;
-                    width: 0.8em;
+                    width: 1em;
                     svg {
                         vertical-align: middle;
                     }
                     &.likee {
-                        width: 0.95em;
+                        width: 1.1em;
                     }
                 }
             }
@@ -254,7 +264,7 @@
                 padding: 0.25em;
                 text-transform: none;
                 letter-spacing: unset;
-                margin: auto 0.1em;
+                margin: auto 0.25em;
                 transition: 0.2s all cubic-bezier(0,0,0.2,1);
                 border-radius: 50%;
                 font: {
@@ -266,21 +276,26 @@
                 }
                 svg {
                     stroke-width: 2px;
-                    color: #424242;
+                    color: lightgray;
+                    fill: lightgrey;
                     width: 0.8em;
                     height: 0.8em;
                 }
                 &.checked {
                     color: #e43f5a;
+                    background: #ffebee;
                     svg {
                         color: #e43f5a;
+                        fill: #e43f5a;
                         stroke-width: 2.5px;
                     }
                 }
                 &.clicked {
                     color: #00c853;
+                    background: #e8f5e9;
                     svg {
                         color: #00c853;
+                        fill: #00c853;
                         stroke-width: 2.5px;
                     }
                 }

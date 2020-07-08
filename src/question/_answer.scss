@@ -50,14 +50,24 @@
         }
     }
     .answer-container {
+        position: relative;
         width: 100%;
         background: white;
         border: 1px solid lightgrey;
-        border-right: 2px solid #388e3c;
         box-sizing: border-box;
         padding: 0.2em 0.5em;
-        border-radius: 2px;
+        border-radius: 8px;
         margin-top: 0.5em;
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0.25em;
+            right: 0em;
+            height: 1.25em;
+            width: 0.25em;
+            border-radius: 0.5em;
+            background: #388e3c;
+        }
         .info-and-settings {
             position: relative;
             width: 100%;

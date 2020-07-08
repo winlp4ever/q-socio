@@ -10,7 +10,7 @@ const App = (props) => {
     const authenticate = () => setAuthenticated(true)
 
     return <div className='app'>
-        {authenticated? <QuestionList />: <Login authenticate={authenticate}/>}
+        <QuestionList />
     </div>
 }
 
