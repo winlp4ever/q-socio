@@ -27,6 +27,7 @@ const Login = (props) => {
         <TextField
             className='login-pw-field'
             placeholder='Enter admin password'
+            type='password'
             onChange={handleChange}
         />
         <Button 

@@ -5,11 +5,11 @@
 }   
 .answers-container-enter-active {
     opacity: 1;
-    transform: translateX(0.5em);
+    transform: translateX(-0.5em);
 }
 .answers-container-exit {
     opacity: 1;
-    transform: translateX(0.5em);
+    transform: translateX(-0.5em);
     transition: all 0.25s cubic-bezier(0, 0, 0.2, 1);
 }   
 .answers-container-exit-active {
@@ -17,12 +17,12 @@
     transform: translateX(-1em);
 }
 .answers-container {
-    transform: translateX(0.5em);
     width: 45%;
     margin: auto;
     box-sizing: border-box;
     padding: 0.2em 0.5em;
-    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
+    transform: translateX(-0.75em);
     .refresh-answers {
         font-family: 'Nunito', sans-serif;
         font-weight: 700;
@@ -51,13 +51,14 @@
         }
     }
     .answer-container {
+        transform: translateX(1.5em);
         position: relative;
         width: 100%;
         background: white;
-        border: 1px solid lightgrey;
+        border: 1px solid rgb(224, 224, 224);
         box-sizing: border-box;
         padding: 0.2em 0.5em;
-        border-radius: 8px;
+        //border-radius: 8px;
         margin-top: 0.5em;
         &:after {
             content: '';

@@ -30,13 +30,13 @@
         position: relative;
         width: 45%;
         margin: 0.5em auto;
-        border-radius: 8px;
+        //border-radius: 8px;
         background: #ffffff; 
         background-size: cover;   
         box-sizing: border-box;
         padding: 0.5em;
-        //border: 1px solid rgb(224, 224, 224);
-        box-shadow: 0 1.6px 3.6px 0 rgba(0,0,0,.132), 0 0.3px 0.9px 0 rgba(0,0,0,.108);
+        border: 1px solid rgb(224, 224, 224);
+        box-shadow: 0 6.4px 14.4px 0 rgba(0,0,0,.05), 0 1.2px 3.6px 0 rgba(0,0,0,.04);
         font-family: 'Roboto', sans-serif;
         color: #424242;
         //border-left: 2px solid #ff6768;
@@ -46,8 +46,7 @@
         }
         &.view-responses {
             transform: translateX(-0.75em);
-            box-shadow: 0 6.4px 14.4px 0 rgba(0,0,0,.132), 0 1.2px 3.6px 0 rgba(0,0,0,.108);
-            
+            box-shadow: 0 6.4px 14.4px 0 rgba(0,0,0,.05), 0 1.2px 3.6px 0 rgba(0,0,0,.04);
         }
         &:after {
             content: '';

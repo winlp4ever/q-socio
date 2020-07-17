@@ -3,13 +3,15 @@
     margin: 0.5em auto;
     resize: none;
     font-family: 'Roboto', sans-serif;
-    font-size: 0.8em;
+    
     padding: 0.25em;
     box-sizing: border-box;
     background: white;  
     border-bottom: 1px solid lightgrey;
     border-right: 2px dashed #4caf50;
+    transform: translateX(1.5em);
     textarea {
+        font-size: 0.8em;
         width: 100%;
         outline: none;
         border-radius: 0.2em;
