@@ -20,13 +20,14 @@ import OutsideClickHandler from 'react-outside-click-handler';
 import ReplyIcon from '../../imgs/reply.svg'
 import FuzzyIcon from '../../imgs/fuzzy.svg'
 import FlagIcon from '../../imgs/flag.svg'
+import {User} from 'react-feather'
 
 const UNKNOWN = 0
 const VALID = 1
 
 const status = {
-    opened: '#fdd835',
-    answered: '#00c853'
+    opened: '#ffecb3',
+    answered: '#c8e6c9'
 }
 
 const ViewResponses = (props) => {
@@ -84,6 +85,15 @@ const AnswersContainer = (props) => {
     </div>
 }
 
+const UserAva = (props) => {
+    return <div className='user-ava'>
+        <User data-userid={props.userid} />
+        <div className='user-info'>
+            <span><b>Id</b>{props.userid}</span>
+        </div>
+    </div>
+}
+
 const Question = (props) => {
     const [loaded, setLoaded] = useState(false)
     const [q, setQ] = useState()
@@ -104,6 +114,7 @@ const Question = (props) => {
         })        
         if (data.status == 0) {
             setQ(data.question)
+            console.log(data.question)
             setValid(data.question.valid)
             setLoaded(true)
         }
@@ -158,6 +169,7 @@ const Question = (props) => {
         </CSSTransition>
         
         <div className={'question' + (viewResponses ? ' view-responses': '')}>
+            <UserAva userid={q.userid}/>
             <div className='info-and-settings'>
                 <span className='status' style={{
                     background: status[q.status]
