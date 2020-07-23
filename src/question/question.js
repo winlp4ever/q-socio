@@ -14,10 +14,12 @@ import AnimatedButton from '../animation-icon/animated-button'
 import RefreshWaitIcon from '../../imgs/refresh-wait.json'
 
 import Button from '@material-ui/core/Button'
-import {Flag, Loader, MessageSquare} from 'react-feather'
 import { CSSTransition } from 'react-transition-group'
 import MdRender from '../markdown-render/markdown-render'
 import OutsideClickHandler from 'react-outside-click-handler';
+import ReplyIcon from '../../imgs/reply.svg'
+import FuzzyIcon from '../../imgs/fuzzy.svg'
+import FlagIcon from '../../imgs/flag.svg'
 
 const UNKNOWN = 0
 const VALID = 1
@@ -38,7 +40,7 @@ const ViewResponses = (props) => {
         className={'view-responses' + (clicked ? ' clicked': '')}
         onClick={handleClick}
     >
-        <MessageSquare />
+        <ReplyIcon />
     </Button>
 }
 
@@ -203,8 +205,8 @@ const Question = (props) => {
                     <Likee className='animated-icon likee'/>
                 </div>
                 <div className='tag-icons'>
-                    <CondCheck text='Off Topic' icon={Flag}/>
-                    <CondCheck text='Is Fuzzy' icon={Loader}/>
+                    <CondCheck text='Off Topic' icon={FlagIcon}/>
+                    <CondCheck text='Is Fuzzy' icon={FuzzyIcon}/>
                     <ViewResponses handleClick={toggleViewResponses}/>
                 </div>
             </div>

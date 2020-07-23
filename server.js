@@ -1,11 +1,9 @@
 //const webpackDevServer = require('webpack-dev-server');
 const webpack = require('webpack');
 const middleware = require('webpack-dev-middleware');
-//const fs = require('fs');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
-//const favicon = require('serve-favicon');
 const http = require('http');
 
 // set up server

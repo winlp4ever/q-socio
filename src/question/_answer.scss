@@ -31,13 +31,15 @@
         letter-spacing: unset;
         //border: 1px solid lightgrey;
         border-radius: 1.5em;
-        background: #f9b384;
+        background: #e8f5e9;
+        color: #43a047;
         padding: 0.2em 1em;
         line-height: 1.2;
         min-width: 0;
         display: block;
         margin: auto;
         box-shadow: 0 6.4px 14.4px 0 rgba(0,0,0,.132), 0 1.2px 3.6px 0 rgba(0,0,0,.108);
+        transform: translateX(1.5em);
         > span {
             display: inline-block;
             margin-right: 0;
@@ -56,6 +58,7 @@
         width: 100%;
         background: white;
         border: 1px solid rgb(224, 224, 224);
+        border-radius: 5px;
         box-sizing: border-box;
         padding: 0.2em 0.5em;
         //border-radius: 8px;

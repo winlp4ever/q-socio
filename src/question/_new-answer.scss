@@ -6,7 +6,7 @@
     
     padding: 0.25em;
     box-sizing: border-box;
-    background: white;  
+    background: #fafbfc;  
     border-bottom: 1px solid lightgrey;
     border-right: 2px dashed #4caf50;
     transform: translateX(1.5em);
@@ -19,5 +19,8 @@
         padding: 0.2em 0.5em;
         border: none;
         resize: none;
+        background: inherit;
+        height: 100%;
+        display: block;
     }
 }
